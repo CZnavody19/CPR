@@ -1,12 +1,13 @@
 package bank;
 
 import bank.account.BankAccount;
-import bank.person.Owner;
 import bank.services.MoneyTransferService;
+import bank.factories.OwnerFactory;
+import bank.factories.BankAccountFactory;
 
 public class App {
     public static void main(String[] args) {
-        BankAccount account = new BankAccount("123456", new Owner("John", "Doe"));
+        BankAccount account = BankAccountFactory.createBankAccount(OwnerFactory.createOwner("John", "Doe"));
 
         MoneyTransferService.deposit(account, 1000);
         MoneyTransferService.deposit(account, 1000);
