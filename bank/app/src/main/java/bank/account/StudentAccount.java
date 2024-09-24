@@ -9,4 +9,12 @@ public class StudentAccount extends BankAccount {
         super(accountNumber, owner);
         this.verified = false;
     }
+
+    public void verify() {
+        this.verified = true;
+    }
+
+    public boolean isVerified() {
+        return this.verified;
+    }
 }
