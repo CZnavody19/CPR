@@ -14,8 +14,8 @@ public class StudentAccount extends BankAccount {
     public String toString() {
         return "StudentAccount{" +
                 "accountNumber='" + this.accountNumber + '\'' +
-                ", owner=" + this.owner +
                 ", balance=" + this.balance +
+                ", owner=" + this.owner +
                 ", verified=" + this.verified +
                 '}';
     }
