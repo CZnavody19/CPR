@@ -3,14 +3,20 @@ package bank.services;
 import bank.account.BankAccount;
 
 public class MoneyTransferService {
-    private static void changeBalance(BankAccount account, double amount) {
+    private FeeCalculator feeCalculator;
+
+    private void changeBalance(BankAccount account, double amount) {
         if (amount == 0) {
             return;
         }
         account.setBalance(account.getBalance() + amount);
     }
 
-    public static void deposit(BankAccount account, double amount) throws IllegalArgumentException {
+    public MoneyTransferService(FeeCalculator feeCalculator) {
+        this.feeCalculator = feeCalculator;
+    }
+
+    public void deposit(BankAccount account, double amount) throws IllegalArgumentException {
         if (Double.isNaN(amount) || Double.isInfinite(amount) || amount < 0) {
             throw new IllegalArgumentException("Invalid amount");
         }
@@ -18,11 +24,11 @@ public class MoneyTransferService {
         changeBalance(account, amount);
     }
 
-    public static void withdraw(BankAccount account, double amount) throws IllegalArgumentException {
+    public void withdraw(BankAccount account, double amount) throws IllegalArgumentException {
         withdraw(account, amount, true);
     }
 
-    public static void withdraw(BankAccount account, double amount, boolean applyFee) throws IllegalArgumentException {
+    public void withdraw(BankAccount account, double amount, boolean applyFee) throws IllegalArgumentException {
         if (Double.isNaN(amount) || Double.isInfinite(amount) || amount < 0) {
             throw new IllegalArgumentException("Invalid amount");
         }
@@ -30,7 +36,7 @@ public class MoneyTransferService {
         double fee = 0d;
 
         if (applyFee) {
-            fee = FeeCalculator.withdrawFee(amount);
+            fee = this.feeCalculator.withdrawFee(amount);
         }
 
         if (account.getBalance() < amount + fee) {
@@ -40,10 +46,10 @@ public class MoneyTransferService {
         changeBalance(account, -(amount + fee));
     }
 
-    public static void transfer(BankAccount from, BankAccount to, double amount) throws IllegalArgumentException {
+    public void transfer(BankAccount from, BankAccount to, double amount) throws IllegalArgumentException {
         withdraw(from, amount, false);
         deposit(to, amount);
 
-        changeBalance(from, -FeeCalculator.transferFee(amount));
+        changeBalance(from, -this.feeCalculator.transferFee(amount));
     }
 }

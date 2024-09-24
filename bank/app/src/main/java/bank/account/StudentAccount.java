@@ -10,6 +10,16 @@ public class StudentAccount extends BankAccount {
         this.verified = false;
     }
 
+    @Override
+    public String toString() {
+        return "StudentAccount{" +
+                "accountNumber='" + this.accountNumber + '\'' +
+                ", owner=" + this.owner +
+                ", balance=" + this.balance +
+                ", verified=" + this.verified +
+                '}';
+    }
+
     public void verify() {
         this.verified = true;
     }

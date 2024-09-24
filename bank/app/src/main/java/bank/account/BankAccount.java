@@ -3,9 +3,9 @@ package bank.account;
 import bank.person.Owner;
 
 public class BankAccount {
-    private String accountNumber;
-    private double balance;
-    private Owner owner;
+    protected String accountNumber;
+    protected double balance;
+    protected Owner owner;
 
     public BankAccount(String accountNumber, Owner owner) {
         this.accountNumber = accountNumber;

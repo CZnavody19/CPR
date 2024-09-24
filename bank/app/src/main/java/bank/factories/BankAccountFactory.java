@@ -6,20 +6,25 @@ import bank.person.Owner;
 import bank.services.NumberGenerator;
 
 public class BankAccountFactory {
-    public static BankAccount createBankAccount(Owner owner) {
-        return new BankAccount(NumberGenerator.generateAccountNumber(), owner);
+    NumberGenerator numberGenerator;
+
+    public BankAccountFactory(NumberGenerator numberGenerator) {
+        this.numberGenerator = numberGenerator;
     }
 
-    public static BankAccount createBankAccount(String accountNumber, Owner owner) {
+    public BankAccount createBankAccount(Owner owner) {
+        return new BankAccount(this.numberGenerator.generateAccountNumber(), owner);
+    }
+
+    public BankAccount createBankAccount(Owner owner, String accountNumber) {
         return new BankAccount(accountNumber, owner);
     }
 
-    public static StudentAccount createStudentBankAccount(Owner owner) {
-        return new StudentAccount(NumberGenerator.generateAccountNumber(), owner);
+    public StudentAccount createStudentBankAccount(Owner owner) {
+        return new StudentAccount(this.numberGenerator.generateAccountNumber(), owner);
     }
 
-    public static StudentAccount createStudentBankAccount(String accountNumber, Owner owner) {
+    public StudentAccount createStudentBankAccount(Owner owner, String accountNumber) {
         return new StudentAccount(accountNumber, owner);
     }
-
 }

@@ -1,11 +1,9 @@
 package bank.services;
 
-import java.util.Random;
+import bank.interfaces.INumberGenerator;
 
-public class NumberGenerator {
-    static Random random = new Random();
-
-    public static String generateAccountNumber() {
+public class NumberGenerator implements INumberGenerator {
+    public String generateAccountNumber() {
         StringBuilder accountNumber = new StringBuilder();
         for (int i = 0; i < 10; i++) {
             accountNumber.append(random.nextInt(10));
