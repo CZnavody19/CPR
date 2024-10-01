@@ -5,6 +5,7 @@ import bank.services.FeeCalculator;
 import bank.services.MoneyTransferService;
 import bank.services.NumberGenerator;
 import bank.factories.OwnerFactory;
+import bank.interfaces.INumberGenerator;
 import bank.person.Owner;
 import bank.factories.BankAccountFactory;
 
@@ -14,12 +15,12 @@ public class App {
 
     private static FeeCalculator feeCalculator;
     private static MoneyTransferService moneyTransferService;
-    private static NumberGenerator numberGenerator;
+    private static INumberGenerator numberGenerator;
 
     private static void initServices() {
         numberGenerator = new NumberGenerator();
         bankAccountFactory = new BankAccountFactory(numberGenerator);
-        ownerFactory = new OwnerFactory();
+        ownerFactory = new OwnerFactory(numberGenerator);
         feeCalculator = new FeeCalculator();
         moneyTransferService = new MoneyTransferService(feeCalculator);
     }

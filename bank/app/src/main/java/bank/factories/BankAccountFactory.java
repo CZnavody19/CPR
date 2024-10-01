@@ -2,13 +2,13 @@ package bank.factories;
 
 import bank.account.BankAccount;
 import bank.account.StudentAccount;
+import bank.interfaces.INumberGenerator;
 import bank.person.Owner;
-import bank.services.NumberGenerator;
 
 public class BankAccountFactory {
-    NumberGenerator numberGenerator;
+    INumberGenerator numberGenerator;
 
-    public BankAccountFactory(NumberGenerator numberGenerator) {
+    public BankAccountFactory(INumberGenerator numberGenerator) {
         this.numberGenerator = numberGenerator;
     }
 
