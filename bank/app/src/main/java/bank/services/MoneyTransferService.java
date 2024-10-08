@@ -1,8 +1,13 @@
 package bank.services;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+
 import bank.account.BankAccount;
 
+@Singleton
 public class MoneyTransferService {
+    @Inject
     private FeeCalculator feeCalculator;
 
     private void changeBalance(BankAccount account, double amount) {
@@ -10,10 +15,6 @@ public class MoneyTransferService {
             return;
         }
         account.setBalance(account.getBalance() + amount);
-    }
-
-    public MoneyTransferService(FeeCalculator feeCalculator) {
-        this.feeCalculator = feeCalculator;
     }
 
     public void deposit(BankAccount account, double amount) throws IllegalArgumentException {

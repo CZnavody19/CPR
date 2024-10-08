@@ -17,6 +17,7 @@ public class StudentAccount extends BankAccount {
                 ", balance=" + this.balance +
                 ", owner=" + this.owner +
                 ", verified=" + this.verified +
+                ", cards=" + this.cards +
                 '}';
     }
 

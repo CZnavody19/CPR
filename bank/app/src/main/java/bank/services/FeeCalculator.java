@@ -1,5 +1,8 @@
 package bank.services;
 
+import com.google.inject.Singleton;
+
+@Singleton
 public class FeeCalculator {
     private static final double WITHDRAW_FEE = 5;
     private static final double TRANSFER_FEE = 10;
