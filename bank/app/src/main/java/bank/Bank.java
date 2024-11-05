@@ -6,7 +6,6 @@ import bank.account.BankAccount;
 import bank.card.Card;
 import bank.facades.BankAccountFacade;
 import bank.facades.CardFacade;
-import bank.factories.BankAccountFactory;
 import bank.factories.OwnerFactory;
 import bank.person.Owner;
 import bank.services.AtmService;
