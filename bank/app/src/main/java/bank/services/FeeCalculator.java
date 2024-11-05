@@ -6,6 +6,7 @@ import com.google.inject.Singleton;
 public class FeeCalculator {
     private static final double WITHDRAW_FEE = 5;
     private static final double TRANSFER_FEE = 10;
+    private static final double INTEREST = 1.5;
 
     public double withdrawFee(double amount) {
         if (amount > 500) {
@@ -19,5 +20,9 @@ public class FeeCalculator {
             return TRANSFER_FEE;
         }
         return 0;
+    }
+
+    public double calculateInterest(double amount) {
+        return INTEREST;
     }
 }
