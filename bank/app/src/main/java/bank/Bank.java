@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 
 import bank.account.BankAccount;
 import bank.card.Card;
+import bank.facades.BankAccountFacade;
 import bank.facades.CardFacade;
 import bank.factories.BankAccountFactory;
 import bank.factories.OwnerFactory;
@@ -13,8 +14,6 @@ import bank.services.JsonSerializationService;
 import bank.services.MoneyTransferService;
 
 public class Bank {
-    @Inject
-    private BankAccountFactory bankAccountFactory;
     @Inject
     private OwnerFactory ownerFactory;
 
@@ -29,12 +28,15 @@ public class Bank {
     @Inject
     private CardFacade cardFacade;
 
+    @Inject
+    private BankAccountFacade bankAccountFacade;
+
     public void run() {
         Owner person1 = ownerFactory.createOwner("John", "Doe");
         Owner person2 = ownerFactory.createOwner("Jane", "Doe");
 
-        BankAccount account1 = bankAccountFactory.createStudentBankAccount(person1);
-        BankAccount account2 = bankAccountFactory.createBankAccount(person2, "69");
+        BankAccount account1 = bankAccountFacade.createBankAccount(person1, "69");
+        BankAccount account2 = bankAccountFacade.createBankAccount(person2, "69");
 
         moneyTransferService.deposit(account1, 1000);
         moneyTransferService.deposit(account2, 1000);
