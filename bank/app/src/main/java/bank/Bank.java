@@ -4,8 +4,8 @@ import com.google.inject.Inject;
 
 import bank.account.BankAccount;
 import bank.card.Card;
+import bank.facades.CardFacade;
 import bank.factories.BankAccountFactory;
-import bank.factories.CardFactory;
 import bank.factories.OwnerFactory;
 import bank.person.Owner;
 import bank.services.AtmService;
@@ -17,8 +17,6 @@ public class Bank {
     private BankAccountFactory bankAccountFactory;
     @Inject
     private OwnerFactory ownerFactory;
-    @Inject
-    private CardFactory cardFactory;
 
     @Inject
     private MoneyTransferService moneyTransferService;
@@ -27,6 +25,9 @@ public class Bank {
 
     @Inject
     private AtmService atmService;
+
+    @Inject
+    private CardFacade cardFacade;
 
     public void run() {
         Owner person1 = ownerFactory.createOwner("John", "Doe");
@@ -43,8 +44,7 @@ public class Bank {
         System.out.println(account1);
         System.out.println(account2);
 
-        Card card1 = cardFactory.createCard();
-        account1.addCard(card1);
+        Card card1 = cardFacade.createCard(account1);
 
         System.out.println(account1);
 
