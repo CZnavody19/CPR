@@ -3,12 +3,14 @@ package bank;
 import com.google.inject.Inject;
 
 import bank.account.BankAccount;
+import bank.account.InvestmentAccount;
 import bank.card.Card;
 import bank.facades.BankAccountFacade;
 import bank.facades.CardFacade;
 import bank.factories.OwnerFactory;
 import bank.person.Owner;
 import bank.services.AtmService;
+import bank.services.InvestmentService;
 import bank.services.JsonSerializationService;
 import bank.services.MoneyTransferService;
 
@@ -20,6 +22,8 @@ public class Bank {
     private MoneyTransferService moneyTransferService;
     @Inject
     private JsonSerializationService serializationService;
+    @Inject
+    private InvestmentService investmentService;
 
     @Inject
     private AtmService atmService;
@@ -52,5 +56,22 @@ public class Bank {
         atmService.withdrawAmount(card1, card1.getPin(), 100);
 
         System.out.println(account1);
+
+        InvestmentAccount investmentAccount = bankAccountFacade.createInvestmentAccount(person1, "420");
+
+        System.out.println(investmentAccount);
+
+        moneyTransferService.deposit(investmentAccount, 1000);
+
+        System.out.println(investmentAccount);
+
+        bankAccountFacade.addInvestment(investmentAccount, "Investment 1", 100, 0.1, 0.5);
+        bankAccountFacade.addInvestment(investmentAccount, "Investment 2", 100, 0.1, 0.5);
+
+        System.out.println(investmentAccount);
+
+        investmentService.calculateinvestments();
+
+        System.out.println(investmentAccount);
     }
 }

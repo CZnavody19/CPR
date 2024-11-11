@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import bank.account.BankAccount;
+import bank.account.InvestmentAccount;
 import bank.account.StudentAccount;
 import bank.interfaces.INumberGenerator;
 import bank.person.Owner;
@@ -35,5 +36,17 @@ public class BankAccountFactory {
         StudentAccount sa = new StudentAccount(accountNumber, owner);
         databaseService.accounts.add(sa);
         return sa;
+    }
+
+    public InvestmentAccount createInvestmentBankAccount(Owner owner) {
+        InvestmentAccount ia = new InvestmentAccount(this.numberGenerator.generateAccountNumber(), owner);
+        databaseService.accounts.add(ia);
+        return ia;
+    }
+
+    public InvestmentAccount createInvestmentBankAccount(String accountNumber, Owner owner) {
+        InvestmentAccount ia = new InvestmentAccount(accountNumber, owner);
+        databaseService.accounts.add(ia);
+        return ia;
     }
 }
