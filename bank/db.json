@@ -1,0 +1,83 @@
+{
+    "accounts": [
+        {
+            "accountNumber": "69",
+            "balance": 900.0,
+            "owner": {
+                "name": "John",
+                "surname": "Doe"
+            },
+            "cards": {
+                "5256215223761212": {
+                    "cardNumber": "5256215223761212",
+                    "pin": "6301"
+                },
+                "5459975119530262": {
+                    "cardNumber": "5459975119530262",
+                    "pin": "1409"
+                }
+            }
+        },
+        {
+            "accountNumber": "69",
+            "balance": 1000.0,
+            "owner": {
+                "name": "Jane",
+                "surname": "Doe"
+            },
+            "cards": {
+                "5867909420695209": {
+                    "cardNumber": "5867909420695209",
+                    "pin": "7747"
+                }
+            }
+        },
+        {
+            "investments": [
+                {
+                    "name": "Investment 1",
+                    "amount": 200.0,
+                    "value": 0.1,
+                    "userDividerPrct": 0.5
+                },
+                {
+                    "name": "Investment 2",
+                    "amount": 200.0,
+                    "value": 0.1,
+                    "userDividerPrct": 0.5
+                }
+            ],
+            "accountNumber": "420",
+            "balance": 1020.0,
+            "owner": {
+                "name": "John",
+                "surname": "Doe"
+            },
+            "cards": {}
+        }
+    ],
+    "cards": [
+        {
+            "cardNumber": "5459975119530262",
+            "pin": "1409"
+        },
+        {
+            "cardNumber": "5867909420695209",
+            "pin": "7747"
+        },
+        {
+            "cardNumber": "5256215223761212",
+            "pin": "6301"
+        }
+    ],
+    "owners": [
+        {
+            "name": "John",
+            "surname": "Doe"
+        },
+        {
+            "name": "Jane",
+            "surname": "Doe"
+        }
+    ]
+}
