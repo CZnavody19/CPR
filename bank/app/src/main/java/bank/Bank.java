@@ -41,59 +41,13 @@ public class Bank {
     private DatabaseService db;
 
     public void run() {
-        // Owner person1 = ownerFactory.createOwner("John", "Doe");
-        // Owner person2 = ownerFactory.createOwner("Jane", "Doe");
-
-        // BankAccount account1 = bankAccountFacade.createBankAccount(person1, "69");
-        // BankAccount account2 = bankAccountFacade.createBankAccount(person2, "69");
-
-        // moneyTransferService.deposit(account1, 1000);
-        // moneyTransferService.deposit(account2, 1000);
-
-        // System.out.println(serializationService.serializeOwner(person1));
-
-        // System.out.println(account1);
-        // System.out.println(account2);
-
-        // Card card1 = cardFacade.createCard(account1);
-
-        // System.out.println(account1);
-
-        // atmService.withdrawAmount(card1, card1.getPin(), 100);
-
-        // System.out.println(account1);
-
-        // InvestmentAccount investmentAccount =
-        // bankAccountFacade.createInvestmentAccount(person1, "420");
-
-        // System.out.println(investmentAccount);
-
-        // moneyTransferService.deposit(investmentAccount, 1000);
-
-        // System.out.println(investmentAccount);
-
-        // bankAccountFacade.addInvestment(investmentAccount, "Investment 1", 100, 0.1,
-        // 0.5);
-        // bankAccountFacade.addInvestment(investmentAccount, "Investment 2", 100, 0.1,
-        // 0.5);
-
-        // System.out.println(investmentAccount);
-
-        // investmentService.calculateinvestments();
-
-        // System.out.println(investmentAccount);
-
-        // try {
-        // serializationService.serialize();
-        // } catch (IOException e) {
-        // // TODO Auto-generated catch block
-        // e.printStackTrace();
-        // }
+        if (!serializationService.fileExits()) {
+            createSmth();
+        }
 
         try {
             serializationService.deserialize();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -107,6 +61,53 @@ public class Bank {
         System.out.println("----");
         for (Owner owner : db.owners) {
             System.out.println(owner);
+        }
+    }
+
+    private void createSmth() {
+        Owner person1 = ownerFactory.createOwner("John", "Doe");
+        Owner person2 = ownerFactory.createOwner("Jane", "Doe");
+
+        BankAccount account1 = bankAccountFacade.createBankAccount(person1, "69");
+        BankAccount account2 = bankAccountFacade.createBankAccount(person2, "69");
+
+        moneyTransferService.deposit(account1, 1000);
+        moneyTransferService.deposit(account2, 1000);
+
+        System.out.println(serializationService.serializeOwner(person1));
+
+        System.out.println(account1);
+        System.out.println(account2);
+
+        Card card1 = cardFacade.createCard(account1);
+
+        System.out.println(account1);
+
+        atmService.withdrawAmount(card1, card1.getPin(), 100);
+
+        System.out.println(account1);
+
+        InvestmentAccount investmentAccount = bankAccountFacade.createInvestmentAccount(person1, "420");
+
+        System.out.println(investmentAccount);
+
+        moneyTransferService.deposit(investmentAccount, 1000);
+
+        System.out.println(investmentAccount);
+
+        bankAccountFacade.addInvestment(investmentAccount, "Investment 1", 100, 0.1, 0.5);
+        bankAccountFacade.addInvestment(investmentAccount, "Investment 2", 100, 0.1, 0.5);
+
+        System.out.println(investmentAccount);
+
+        investmentService.calculateinvestments();
+
+        System.out.println(investmentAccount);
+
+        try {
+            serializationService.serialize();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

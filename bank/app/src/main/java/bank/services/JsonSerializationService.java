@@ -38,4 +38,8 @@ public class JsonSerializationService {
         String json = Files.toString(file, java.nio.charset.StandardCharsets.UTF_8);
         db.set(this.gson.fromJson(json, DatabaseService.class));
     }
+
+    public boolean fileExits() {
+        return Paths.get("db.json").toFile().exists();
+    }
 }
